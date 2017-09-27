@@ -31,7 +31,12 @@
 			<td colspan="5">
 			<!-- content -->
 			<h1>학생등록 페이지</h1>
-			
+			<form action="insert.jsp">
+			<label for="name">이름:</label>
+			<input type="text" name="name" id="name">	
+			<input type="submit" value="등록">
+			<input type="reset" value="초기화">
+			</form>
 			
 			
 			<!-- content end -->

@@ -1,3 +1,4 @@
+<%@page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -31,40 +32,47 @@
 			<td colspan="5">
 			<!-- content -->
 			<h1>성적입력 페이지</h1>
-			<form action="update.jsp">
-			<table>
-				<tr>
-					<td>학번</td>
-					<td>
-						<input type="text" name="num">
-					</td>
-				</tr>
-				<tr>
-					<td>국어</td>
-					<td>
-						<input type="text" name="kor">
-					</td>
-				</tr>
-				<tr>
-					<td>영어</td>
-					<td>
-						<input type="text" name="eng">
-					</td>
-				</tr>
-				<tr>
-					<td>수학</td>
-					<td>
-						<input type="text" name="math">
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-					<input type="submit" value="입력">
-					<input type="reset" value="취소">
-					</td>
-				</tr>
-			</table>
-			</form>
+			<%-- <p>num:<%=request.getParameter("num") %> </p>
+			<p>kor:<%=request.getParameter("kor") %></p>
+			<p>eng:<%=request.getParameter("eng") %></p>
+			<p>math:<%=request.getParameter("math") %></p> --%>
+<%
+	String param1=request.getParameter("num");
+	String param2=request.getParameter("kor");
+	String param3=request.getParameter("eng");
+	String param4=request.getParameter("math");
+	int num=Integer.parseInt(param1.trim());
+	int kor=Integer.parseInt(param2.trim());
+	int eng=Integer.parseInt(param3.trim());
+	int math=Integer.parseInt(param4.trim());
+	String sql="update student01 set ";
+	sql+=" kor="+kor;
+	sql+=",eng="+eng;
+	sql+=",math="+math;	
+	sql+=" where num="+num;
+	System.out.println(sql);
+	String url="jdbc:oracle:thin:@127.0.0.1:1521:xe";
+	String id="scott";
+	String pw="tiger";
+	String driver="oracle.jdbc.driver.OracleDriver";
+	Connection conn=null;
+	Statement stmt=null;
+	int result=0;
+	try{
+		Class.forName(driver);
+		conn=DriverManager.getConnection(url,id,pw);
+		stmt=conn.createStatement();
+		result=stmt.executeUpdate(sql);
+	}catch(Exception ex){
+		out.print("<h2>에러</h2><p>제접속해보시고 관리자에게 문의하세요</p>");
+	}finally{
+		if(stmt!=null)stmt.close();
+		if(conn!=null)conn.close();
+	}
+	if(result>0)out.print("<h2>성적입력 완료</h2>");
+	else
+		out.print("<h2>에러</h2><p>입력을 확인하세요</p>");
+%>
 			<!-- content end -->
 			</td>
 		</tr>

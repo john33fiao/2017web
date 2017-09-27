@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR"
+    import="java.sql.*"
+    %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,41 +32,44 @@
 		<tr>
 			<td colspan="5">
 			<!-- content -->
-			<h1>성적입력 페이지</h1>
-			<form action="update.jsp">
-			<table>
-				<tr>
-					<td>학번</td>
-					<td>
-						<input type="text" name="num">
-					</td>
-				</tr>
-				<tr>
-					<td>국어</td>
-					<td>
-						<input type="text" name="kor">
-					</td>
-				</tr>
-				<tr>
-					<td>영어</td>
-					<td>
-						<input type="text" name="eng">
-					</td>
-				</tr>
-				<tr>
-					<td>수학</td>
-					<td>
-						<input type="text" name="math">
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-					<input type="submit" value="입력">
-					<input type="reset" value="취소">
-					</td>
-				</tr>
-			</table>
-			</form>
+			<h1>학생등록 페이지</h1>
+			
+			<%
+String name=request.getParameter("name");
+name=name.trim();
+if(name==null || "".equals(name)){
+	response.sendRedirect("add.jsp");
+	return;
+}
+String sql="insert into student01 (num,name) values ";
+sql+="(student01_seq.nextval,'"+name+"')";
+System.out.println(sql);			
+String url="jdbc:oracle:thin:@127.0.0.1:1521:xe";
+String user="scott";
+String password="tiger";
+Connection conn=null;
+Statement stmt=null;
+int result=0;
+try{
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+	conn=DriverManager.getConnection(url, user, password);
+	stmt=conn.createStatement();
+	result=stmt.executeUpdate(sql);
+}catch(Exception ex){
+	out.print("<h2>입력실패</h2>");		
+	out.print("<p>데이터베이스 오류</p>");		
+}finally{
+	if(stmt!=null)stmt.close();
+	if(conn!=null)conn.close();
+}
+if(result>0){
+	out.print("<h2>입력완료</h2>");
+	out.print("<p>"+name+" 학생이 추가되었습니다</p>");		
+}else{
+	out.print("<h2>입력실패</h2>");	
+	out.print("<p>다시 입력바랍니다</p>");		
+}
+			%>
 			<!-- content end -->
 			</td>
 		</tr>
