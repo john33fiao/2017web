@@ -33,8 +33,8 @@
 			<!-- content -->
 			<h1>학생 리스트</h1>
 			
-			<table width="400" border="1" cellspacing="0">
-				<tr>
+			<table width="400" align="center" border="1" cellspacing="0">
+				<tr bgcolor="gray">
 					<td>학번</td>
 					<td>이름</td>
 				</tr>
@@ -56,9 +56,9 @@ try{
 	rs=stmt.executeQuery(sql);
 				while(rs.next()){
 				%>
-				<tr>
+				<tr bgcolor="#dddddd">
 					<td><%=rs.getInt(1) %></td>
-					<td><%=rs.getString(2) %></td>
+					<td><a href="one.jsp?num=<%=rs.getInt(1) %>"><%=rs.getString(2) %></a></td>
 				</tr>
 				<%
 				}

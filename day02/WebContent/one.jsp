@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"
-    import="java.sql.*"
-    %>
+    import="java.sql.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -32,16 +31,11 @@
 		<tr>
 			<td colspan="5">
 			<!-- content -->
-			<h1>성적입력 페이지</h1>
-			<form action="update.jsp">
-			<table>
-				<tr>
-					<td>학번</td>
-					<td>
-						<select name="num">
-						
-						<%
-String sql="select num from student01 order by num";
+			<h1>학번<%=request.getParameter("num") %>의 성적</h1>
+			<%
+String sql="select kor,eng,math from student01 where num=";
+	sql+=request.getParameter("num");
+System.out.println(sql);
 String url="jdbc:oracle:thin:@localhost:1521:xe";
 String id="scott";
 String pw="tiger";
@@ -49,51 +43,41 @@ String driver="oracle.jdbc.driver.OracleDriver";
 Connection conn=null;
 Statement stmt=null;
 ResultSet rs=null;
+int kor=0;
+int eng=0;
+int math=0;
 try{
 	Class.forName(driver);
 	conn=DriverManager.getConnection(url,id,pw);
 	stmt=conn.createStatement();
 	rs=stmt.executeQuery(sql);
-						while(rs.next()){ 
-						%>
-							<option><%=rs.getInt(1) %></option>
-						<%
-						} 
+	if(rs.next()){
+		kor=rs.getInt(1);
+		eng=rs.getInt(2);
+		math=rs.getInt(3);
+	}
 }finally{
 	if(rs!=null)rs.close();
 	if(stmt!=null)stmt.close();
 	if(conn!=null)conn.close();
-}					
-						%>
-						</select>
-					</td>
+}
+			%>
+			<table width="400" align="center">
+				<tr>
+					<td width="120" bgcolor="gray">국어</td>
+					<td bgcolor="#dddddd"><%=kor %></td>
 				</tr>
 				<tr>
-					<td>국어</td>
-					<td>
-						<input type="text" name="kor">
-					</td>
+					<td width="120" bgcolor="gray">영어</td>
+					<td bgcolor="#dddddd"><%=eng %></td>
 				</tr>
 				<tr>
-					<td>영어</td>
-					<td>
-						<input type="text" name="eng">
-					</td>
-				</tr>
-				<tr>
-					<td>수학</td>
-					<td>
-						<input type="text" name="math">
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-					<input type="submit" value="입력">
-					<input type="reset" value="취소">
-					</td>
+					<td width="120" bgcolor="gray">수학</td>
+					<td bgcolor="#dddddd"><%=math %></td>
 				</tr>
 			</table>
-			</form>
+			
+			
 			<!-- content end -->
 			</td>
 		</tr>
