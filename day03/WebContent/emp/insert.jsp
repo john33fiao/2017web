@@ -8,6 +8,28 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%!
+		public boolean isDisitValid(String msg){
+			boolean result=false;
+			msg=msg.trim();
+			for(int i=0; i<msg.length(); i++){
+				if(Character.isDigit(msg.charAt(i))){}else{
+					result=true;
+					break;
+				}	
+			}
+			return result;
+		}
+		public boolean isNullValid(String msg){
+			boolean result=false;
+			msg=msg.trim();
+			if(msg.length()==0){
+				return true;
+			}
+			
+			return result;
+		}
+	%>
 	<%
 	Enumeration<String> enm=request.getParameterNames();
 	String[] pname=new String[10];
@@ -21,18 +43,30 @@
 	/* for(int i=0; i<params.length; i++){
 		System.out.println(pname[i]+":"+params[i]);
 	} */
-	int empno =Integer.parseInt(params[0]);
+	
+	if(isNullValid(params[0])||isNullValid(params[1])){
+		response.sendRedirect("add.jsp");
+		return;
+	}
+	if(isDisitValid(params[0])||isDisitValid(params[7])){
+		response.sendRedirect("add.jsp");
+		return;
+	}
+	int empno=Integer.parseInt(params[0].trim());
 	String name=params[1];
 	String job=params[2];
 	int mgr=Integer.parseInt(params[3]);
 	String nalja=params[4]+"/"+params[5]+"/"+params[6];
-	int sal=Integer.parseInt(params[7]);
-	int comm=Integer.parseInt(params[8]);
+	int sal=Integer.parseInt(params[7].trim());
 	int deptno=Integer.parseInt(params[9]);
-	
 	String sql="insert into emp values ("
-		+empno+",'"+name+"','"+job+"',"+mgr+",'"+nalja
-		+"',"+sal+","+comm+","+deptno+")";
+				+empno+",'"+name+"','"+job+"',"+mgr+",'"+nalja;
+	if("".equals(params[8].trim())){
+		sql+="',"+sal+",null,"+deptno+")";
+	}else{
+		int comm=Integer.parseInt(params[8].trim());
+		sql+="',"+sal+","+comm+","+deptno+")";
+	}
 	//System.out.println(sql);
 	Connection conn=null;
 	Statement stmt=null;

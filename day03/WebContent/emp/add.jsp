@@ -105,7 +105,7 @@ try{
 			</tr>
 			<tr>
 				<td>sal</td>
-				<td><input type="text" name="sal"> </td>
+				<td><input type="text" name="sal" value="0"> </td>
 			</tr>
 			<tr>
 				<td>comm</td>
