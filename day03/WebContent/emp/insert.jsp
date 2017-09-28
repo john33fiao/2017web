@@ -20,6 +20,7 @@
 			}
 			return result;
 		}
+	
 		public boolean isNullValid(String msg){
 			boolean result=false;
 			msg=msg.trim();
@@ -84,6 +85,7 @@
 	}else{
 		response.sendRedirect("add.jsp");		
 	}
+	System.out.println(sql);
 	%>
 </body>
 </html>

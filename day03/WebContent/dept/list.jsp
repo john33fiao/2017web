@@ -42,5 +42,6 @@
 	}
 %>
 	</table>
+	<p><a href="add.jsp">[ют╥б]</a></p>
 </body>
 </html>
