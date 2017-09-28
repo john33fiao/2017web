@@ -32,7 +32,7 @@ try{
 %>
 		<tr>
 			<td><%=rs.getInt(1) %></td>
-			<td><%=rs.getString(2) %></td>
+			<td><a href="one.jsp?idx=<%=rs.getInt(1) %>"><%=rs.getString(2) %></a></td>
 			<td><%=rs.getInt(3) %></td>
 			<td><%=rs.getDate(4) %></td>
 		</tr>
