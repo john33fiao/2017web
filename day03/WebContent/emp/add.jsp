@@ -63,22 +63,43 @@ try{
 				<% 
 				Date date=new Date(); 
 				int year=date.getYear()+1900;
+				int month=date.getMonth()+1;
+				int day=date.getDate();
 				System.out.println(year);
 				%>
 					<select name="year">
 						<option><%=year-1 %></option>
-						<option><%=year %></option>
+						<option selected="selected"><%=year %></option>
 						<option><%=year+1 %></option>
 					</select>³â
 					<select name="month">
-					<%for(int i=1; i<13; i++){ %>
-						<option><%=i %></option>
-					<%} %>
+					<%
+					for(int i=1; i<13; i++){ 
+						if(i>9){
+					%>
+						<option<%if(i==month)out.print(" selected=\"selected\""); %>><%=i %></option>
+					<%
+						}else{
+					%>
+						<option<%if(i==month)out.print(" selected=\"selected\""); %>>0<%=i %></option>	
+					<%
+						}
+					} 
+					%>
 					</select>¿ù
 					<select name="day">
-					<%for(int i=1; i<32; i++){ %>
-						<option><%=i %></option>
-					<%} %>
+					<%
+					for(int i=1; i<32; i++){
+						if(i>9){
+					%>
+						<option<%if(i==day)out.print(" selected=\"selected\""); %>><%=i %></option>
+					<%
+						}else{
+					%>
+						<option<%if(i==day)out.print(" selected=\"selected\""); %>>0<%=i %></option>	
+					<%
+						}
+					} %>
 					</select>ÀÏ
 				</td>
 			</tr>
