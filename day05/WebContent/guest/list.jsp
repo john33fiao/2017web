@@ -35,6 +35,7 @@
 	
 	<table width="80%" border="1">
 		<tr>
+			<td>글번호</td>
 			<td>사번</td>
 			<td>이름</td>
 			<td>날짜</td>
@@ -45,13 +46,14 @@
 		Object[] obj=list.get(i);
 %>
 		<tr>
+			<td><a href="detail.jsp?idx=<%=obj[0]%>"><%=i+1 %></a></td>
 		<%for(int j=0; j<obj.length;j++){%>
 			<td><%=obj[j] %></td>
 		<%}%>
 		</tr>
 <%}%>
 	</table>
-	
+	<p><a href="add.jsp">[입력]</a></p>
 	<%@include file="/template/footer.jspf" %>
 </body>
 </html>
