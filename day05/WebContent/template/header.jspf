@@ -1,0 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"
+    import="java.sql.*"
+    %>
+<%
+	String rootPath=request.getContextPath();
+	Connection conn=null;
+	PreparedStatement pstmt=null;
+	ResultSet rs=null;
+	
+	String driver="oracle.jdbc.driver.OracleDriver";
+	String url="jdbc:oracle:thin:@127.0.0.1:1521:xe";
+	String user="scott";
+	String password="tiger";
+%>
+	<table width="100%">
+	
+		<tr>
+			<td>
+			<a href="<%=rootPath%>">
+			<img alt="" src="<%=rootPath%>/imgs/logo.jpg">
+			</a>
+			</td>
+		</tr>

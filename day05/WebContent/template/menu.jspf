@@ -1,0 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+		<tr>
+			<td>
+			<a href="<%=rootPath%>/guest/list.jsp">[LIST]</a>
+			<a href="#">menu2</a>
+			<a href="#">menu3</a>
+			<a href="#">menu4</a>
+			
+			</td>
+		</tr>
+		<tr>
+			<td>
