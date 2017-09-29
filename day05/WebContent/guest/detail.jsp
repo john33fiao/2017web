@@ -60,7 +60,6 @@
 		<tr>
 			<td colspan="2">
 			<input type="submit" value="수정이동">
-			<a href="#">[삭제]</a>
 			</td>
 		</tr>
 	</table>

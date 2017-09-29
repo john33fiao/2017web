@@ -40,6 +40,7 @@
 			<td>이름</td>
 			<td>날짜</td>
 			<td>금액</td>
+			<td>삭제</td>
 		</tr>
 <%
 	for(int i=0; i<list.size(); i++){
@@ -50,6 +51,13 @@
 		<%for(int j=0; j<obj.length;j++){%>
 			<td><%=obj[j] %></td>
 		<%}%>
+			<td>
+			<%-- <a href="delete.jsp?idx=<%=obj[0]%>">삭제</a> --%>
+			<form action="delete.jsp">
+				<input type="hidden" name="idx" value="<%=obj[0]%>">
+				<input type="submit" value="삭제">
+			</form>
+			</td>
 		</tr>
 <%}%>
 	</table>
