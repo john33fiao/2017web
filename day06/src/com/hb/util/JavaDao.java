@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class JavaDao {
 	// CRUD
 	private String driver="oracle.jdbc.driver.OracleDriver";
-	private String url="jdbc:oracle:thin:@localhost:1521:xe";
+	private String url="jdbc:oracle:thin:@203.236.209.193:1521:xe";
 	private String id="scott";
 	private String pw="tiger";
 	private Connection conn;
@@ -81,6 +81,35 @@ public class JavaDao {
 	}
 	}
 	
+	public JavaDto selectOne(String idx){
+		int sabun=Integer.parseInt(idx);
+		String sql="select * from guest02 where sabun=?";
+		JavaDto bean = new JavaDto();
+		getConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, sabun);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				bean.setSabun(rs.getInt("sabun"));
+				bean.setName(rs.getString("name"));
+				bean.setNalja(rs.getDate("nalja"));
+				bean.setPay(rs.getInt("pay"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null)rs.close();
+				if(pstmt!=null)pstmt.close();
+				if(conn!=null)conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+	}
+		
+		return bean;
+	}
 	
 //	public static void testDao(){
 //		JavaDao dao = new JavaDao();

@@ -15,7 +15,13 @@
 	<table align="center">
 		<tr>
 			<td align="right" height="155" colspan="2"  background="<%=rootPath %>/imgs/header.png">
+				<%
+				if(session.getAttribute("result")==null){
+				%>
 				<a href="<%=rootPath %>/login/login.jsp">로그인</a>||
+				<%}else{ %>
+				<a href="<%=rootPath %>/login/logout.jsp">로그아웃</a>||
+				<%} %>
 				<a href="<%=rootPath %>/login/join.jsp">회원가입</a>
 			</td>
 		</tr>
@@ -31,7 +37,7 @@
 			<td height="316" width="211"  background="<%=rootPath %>/imgs/aside.png">
 			</td>
 			<td valign="top" bgcolor="#ffffff">
-				<h1>입력페이지</h1>
+				<h1>입력페이지<%=session.getAttribute("result") %></h1>
 				<form action="insert.jsp">
 					<p>
 					사번:<input type="text" name="sabun">

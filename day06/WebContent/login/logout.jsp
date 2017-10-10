@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"
-    import="com.hb.util.*,java.util.Date"
+    import="com.hb.util.*"
     %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -20,11 +20,6 @@
 				%>
 				<a href="<%=rootPath %>/login/login.jsp">로그인</a>||
 				<%}else{ %>
-				<%
-				LoginDto bean=(LoginDto)session.getAttribute("result");
-				String name=bean.getName();
-				%>
-				<%=name %>님 로그인 중입니다...
 				<a href="<%=rootPath %>/login/logout.jsp">로그아웃</a>||
 				<%} %>
 				<a href="<%=rootPath %>/login/join.jsp">회원가입</a>
@@ -41,10 +36,16 @@
 		<tr>
 			<td height="316" width="211"  background="<%=rootPath %>/imgs/aside.png">
 			</td>
-			<td  background="<%=rootPath %>/imgs/index.png">
-				<p>id:<%=session.getId() %></p>
-				<p>AccessedTime:<%=new Date(session.getLastAccessedTime()) %></p>
-				<p>MaxInactiveInterval:<%=session.getMaxInactiveInterval() %></p>
+			<td valign="top" bgcolor="#ffffff">
+				<h1>로그인아웃</h1>
+				<%
+					// 기존 result에 null 대입
+					//session.setAttribute("result", null);
+					// 세션에 있는 result속성 제거
+					//session.removeAttribute("result");
+					// 세션 새것으로 바꿈
+					session.invalidate();
+				%>
 			</td>
 		</tr>
 		<tr>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"
-    import="com.hb.util.*,java.util.Date"
+    import="com.hb.util.*"
     %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -20,11 +20,6 @@
 				%>
 				<a href="<%=rootPath %>/login/login.jsp">로그인</a>||
 				<%}else{ %>
-				<%
-				LoginDto bean=(LoginDto)session.getAttribute("result");
-				String name=bean.getName();
-				%>
-				<%=name %>님 로그인 중입니다...
 				<a href="<%=rootPath %>/login/logout.jsp">로그아웃</a>||
 				<%} %>
 				<a href="<%=rootPath %>/login/join.jsp">회원가입</a>
@@ -41,10 +36,33 @@
 		<tr>
 			<td height="316" width="211"  background="<%=rootPath %>/imgs/aside.png">
 			</td>
-			<td  background="<%=rootPath %>/imgs/index.png">
-				<p>id:<%=session.getId() %></p>
-				<p>AccessedTime:<%=new Date(session.getLastAccessedTime()) %></p>
-				<p>MaxInactiveInterval:<%=session.getMaxInactiveInterval() %></p>
+			<td valign="top" bgcolor="#ffffff">
+<%
+	String param1=request.getParameter("sabun").trim();
+	String param2=request.getParameter("name").trim();
+	int sabun=Integer.parseInt(param1);
+	String name=param2;
+	LoginDao dao=new LoginDao();
+	boolean result2=dao.login(sabun, name);
+	if(result2){
+		//세션 스코프로 result=true을 기억 시킴
+		//com.hb.util.LoginDto result= new com.hb.util.LoginDto();
+		// result.setName(name);
+		//session.setAttribute("result", result);
+%>				
+				<h1>로그인성공</h1>
+				<jsp:useBean class="com.hb.util.LoginDto" id="result" scope="session">
+					<jsp:setProperty  value="<%=name %>" property="name" name="result"/>
+				</jsp:useBean>
+				
+				<p>
+					<a href="logout.jsp">로그아웃</a>
+				</p>
+<%
+	}else{
+		response.sendRedirect("login.jsp");
+	}
+%>
 			</td>
 		</tr>
 		<tr>
