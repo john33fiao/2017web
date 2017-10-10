@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"
-    import="com.hb.util.*"
+    import="com.hb.util.*,java.util.ArrayList"
     %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -30,7 +30,31 @@
 		<tr>
 			<td height="316" width="211"  background="<%=rootPath %>/imgs/aside.png">
 			</td>
-			<td  background="<%=rootPath %>/imgs/index.png">
+			<td valign="top" bgcolor="#ffffff">
+				<h1>리스트페이지</h1>
+				<table width="80%" align="center" border="1" cellspacing="0">
+					<tr>
+						<td>사번</td>
+						<td>이름</td>
+						<td>날짜</td>
+						<td>금액</td>
+					</tr>
+<%
+	JavaDao dao= new JavaDao();
+	ArrayList<JavaDto> list = dao.getSelectAll();
+	for(int i=0; i<list.size(); i++){
+		JavaDto bean=list.get(i);
+%>					
+					<tr>
+						<td><%=bean.getSabun() %></td>
+						<td><%=bean.getName() %></td>
+						<td><%=bean.getNalja() %></td>
+						<td><%=bean.getPay() %></td>
+					</tr>
+<%
+	}
+%>					
+				</table>
 			</td>
 		</tr>
 		<tr>

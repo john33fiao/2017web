@@ -60,18 +60,39 @@ public class JavaDao {
 		return alist;
 	}
 	
-	
-	public static void testDao(){
-		JavaDao dao = new JavaDao();
-		ArrayList<JavaDto> list = dao.getSelectAll();
-		for(int i=0; i<list.size(); i++){
-			JavaDto dto=list.get(i);
-			System.out.print("사번:"+dto.getSabun());
-			System.out.print("이름:"+dto.getName());
-			System.out.print("날짜:"+dto.getNalja());
-			System.out.println("금액:"+dto.getPay());
-		}
+	public void insertOne(int sabun, String name, int pay){
+		String sql="insert into guest02 values(?,?,sysdate,?)";
+		getConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, sabun);
+			pstmt.setString(2, name);
+			pstmt.setInt(3, pay);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt!=null)pstmt.close();
+				if(conn!=null)conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 	}
+	}
+	
+	
+//	public static void testDao(){
+//		JavaDao dao = new JavaDao();
+//		ArrayList<JavaDto> list = dao.getSelectAll();
+//		for(int i=0; i<list.size(); i++){
+//			JavaDto dto=list.get(i);
+//			System.out.print("사번:"+dto.getSabun());
+//			System.out.print("이름:"+dto.getName());
+//			System.out.print("날짜:"+dto.getNalja());
+//			System.out.println("금액:"+dto.getPay());
+//		}
+//	}
 }
 
 
