@@ -45,7 +45,14 @@
 				<tr>
 					<td>±€æ¥¿Ã</td>
 					<td>
+<% if(session.getAttribute("name")==null){%>
 						<input type="text" name="name">
+<%
+}else{
+	out.print(session.getAttribute("name"));
+%>
+						<input type="hidden" name="name" value="<%=session.getAttribute("name")%>">
+<%} %>
 					</td>
 				</tr>
 				<tr>
