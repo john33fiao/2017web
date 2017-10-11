@@ -5,9 +5,9 @@
     %>
 <tr>
 	<td colspan="2" align="center" bgcolor="#cccccc">
-		<a href="./">HOME</a>
-		<a href="<%=path%>/list.jsp">LIST</a>
-		<a href="<%=path%>/add.jsp">ADD</a>
+		<a href="<%=path%>./">HOME</a>
+		<a href="<%=path%>./bbs/list.jsp">LIST</a>
+		<a href="<%=path%>./bbs/add.jsp">ADD</a>
 	</td>
 </tr>
 <tr>

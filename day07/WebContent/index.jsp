@@ -11,13 +11,13 @@
 	String rootPath = request.getContextPath();
 	
 %>
-<body background="<%=rootPath %>/imgs/bg.png">
+<body>
 	<!-- ACTION TAG -->
 	<jsp:include page="template2/header.jsp">
-		<jsp:param value="<%=rootPath %>" name="path"></jsp:param>
+		<jsp:param value="" name="path"></jsp:param>
 	</jsp:include>
 	<jsp:include page="template2/menu.jsp">
-		<jsp:param value="bbs" name="path"/>
+		<jsp:param value="" name="path"/>
 	</jsp:include>
 		<img alt="" src="imgs/index.png">
 	

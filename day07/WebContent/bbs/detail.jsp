@@ -13,38 +13,41 @@
 		<jsp:param value="." name="path"/>
 	</jsp:include>
 	<jsp:include page="../template2/menu.jsp">
-		<jsp:param value="." name="path"/>
+		<jsp:param value="." name="path"/>	
 	</jsp:include>
-		<h1>LIST PAGE</h1>
+		<h1>Detail page</h1>
 		<%
+		int idx=Integer.parseInt(request.getParameter("idx"));
 		ArrayList<String[]> alist=(ArrayList<String[]>)application.getAttribute("bbs");
-		if(alist!=null){
-		%>	
-		<table border="1" cellspacing="0">
+		String[] bean=alist.get(idx);
+		
+		//bean[2]=bean[2].replaceAll("&", "&amp;");
+		//bean[2]=bean[2].replaceAll(" ", "&nbsp;");
+		//bean[2]=bean[2].replaceAll("<", "&lt;");
+		//bean[2]=bean[2].replaceAll(">", "&gt;");
+		bean[2]=bean[2].replaceAll("\n", "<br>");
+		      
+		%>
+		<table>
 			<tr>
-				<td width="100">글번호</td>
-				<td width="400">제목</td>
-				<td width="100">글쓴이</td>
+				<td width="100" bgcolor="#cccccc">제목</td>
+				<td width="500"><%=bean[0] %></td>
 			</tr>
-		<%
-		for(int i=alist.size()-1; i>=0; i--){
-			String[] msgs=alist.get(i);
-		%>			
 			<tr>
-				<td><%=i+1 %></td>
-				<td><a href="detail.jsp?idx=<%=i%>"><%=msgs[0] %></a></td>
-				<td><%=msgs[1] %></td>
+				<td bgcolor="#cccccc">글쓴이</td>
+				<td><%=bean[1] %></td>
 			</tr>
-		<%} %>			
-					
+			<tr>
+				<td colspan="2"><%=bean[2] %></td>
+			</tr>
 		</table>
-		<%}else{ %>
-			<h3>작성된 글 없음</h3>			
-		<%} %>			
+		<p>
+			<a href="edit.jsp?idx=<%=idx%>">수정</a>
+		</p>
+		
 	<jsp:include page="../template2/footer.jsp"></jsp:include>
 </body>
 </html>
-
 
 
 
