@@ -1,0 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+	<table align="center">
+		<tr>
+			<td align="right" height="155" colspan="2"  background="<%=rootPath %>/imgs/header.png">
+				<a href="<%=rootPath %>/login/login.jsp">로그인</a>||
+				<a href="<%=rootPath %>/login/join.jsp">회원가입</a>
+			</td>
+		</tr>

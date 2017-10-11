@@ -1,0 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+		<tr>
+			<td height="316" width="211"  background="<%=rootPath %>/imgs/aside.png">
+			</td>
+			<td>
