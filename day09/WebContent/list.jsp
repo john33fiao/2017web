@@ -86,7 +86,9 @@ if(conn!=null)conn.close();
 		<tr>
 			<td><%=bean.getNum() %></td>
 			<td><%=bean.getSabun() %></td>
-			<td><%=bean.getName() %></td>
+			<td>
+				<a href="index.jsp?url=detail&sabun=<%=bean.getSabun() %>"><%=bean.getName() %></a>
+			</td>
 			<td><%=bean.getNalja() %></td>
 			<td><%=bean.getPay() %></td>
 		</tr>
@@ -125,6 +127,8 @@ if(conn!=null)conn.close();
 		<input type="hidden" name="plimit" value="<%=plimit%>">
 		<input type="submit" value="검색">
 	</form>
+	
+	<a href="add.jsp">[입력]</a>
 </body>
 </html>
 

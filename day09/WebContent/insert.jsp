@@ -23,8 +23,16 @@
 	pstmt.setString(2, bean.getName());
 	pstmt.setInt(3, bean.getPay());
 	pstmt.executeUpdate();
-	
+	//response.sendRedirect("list.jsp");
 	%>
-
+	<jsp:forward page="index.jsp">
+		<jsp:param value="list" name="url"/>
+	</jsp:forward>
 </body>
 </html>
+
+
+
+
+
+
