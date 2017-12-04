@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1><%=request.getParameter("id") %></h1>
-	<form action="ex07.jsp">
+	<form action="#">
 		<input type="text" name="id">
 		<input type="submit" value="Àü¼Û">
 	</form>

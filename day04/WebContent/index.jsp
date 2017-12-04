@@ -9,6 +9,7 @@
 <body>
 	<%@ include file="template/header.jsp" %>
 	<img alt="index" src="imgs/2.png">
-	<%@ include file="template/footer.jsp" %>
+	<%-- <%@ include file="template/footer.jsp" %> --%>
+	<jsp:include page="template/footer.jsp"></jsp:include>
 </body>
 </html>
